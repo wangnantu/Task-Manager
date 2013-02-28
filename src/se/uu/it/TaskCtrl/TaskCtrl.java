@@ -27,7 +27,6 @@ public class TaskCtrl{
 	private TaskView view;
 	
 	public TaskCtrl(){
-//		 model = new TaskModel();
 		 view = new TaskView();
 		 DlgUtil.setProgramFrame(view);
 		 //showTask(TimeUtil.getCurrDate());

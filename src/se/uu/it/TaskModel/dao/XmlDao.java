@@ -28,7 +28,6 @@ public class XmlDao {
 		File file = new File(xmlFile);
 
 		try {
-			// 判断文件的存在以增强程序的健壮性
 
 			if (file.exists()) {
 				// 文件存在,直接从文件读取文档对象
