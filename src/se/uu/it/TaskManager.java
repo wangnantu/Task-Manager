@@ -5,6 +5,5 @@ public class TaskManager {
 	
 	public static void main(String[] args){
 	    new TaskCtrl();
-		//new test();
 	}
 }
