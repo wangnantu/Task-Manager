@@ -23,18 +23,18 @@ public class TaskListPort extends JPanel {
 	private TaskContainer newTaskContainer;	
 	private TaskModel model;
 	
-	public TaskListPort(){
+	public TaskListPort(String date){
 		super();
 		setLayout(new GridLayout(0,1,0,1));
-		initComponents();
+		initComponents(date);
 		setMaximumSize(new Dimension(540,40));
 	}
-	public void initComponents(){
+	public void initComponents(String date){
 		taskPane.setLayout(new BoxLayout(taskPane, BoxLayout.Y_AXIS));
 		taskPane.setBackground(new Color(175,234,245));
 	
 		model = new TaskModel();
-		taskList = model.getList();
+		taskList = model.getXmlPersistence().fetchOneDayTaskFromXmlFile(date);
 		taskContainers = new ArrayList<TaskContainer>();
 		Iterator<Task> taskIterator = taskList.iterator();
 		while(taskIterator.hasNext())

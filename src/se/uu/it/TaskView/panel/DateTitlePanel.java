@@ -40,4 +40,8 @@ public class DateTitlePanel extends JPanel {
 	public JButton getAddTaskButton(){
 		return addTaskButton;
 	}
+	
+	public JLabel getDate() {
+		return date;
+	}
 }

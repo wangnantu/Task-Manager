@@ -1,6 +1,5 @@
 package se.uu.it.TaskModel;
 
-import java.util.List;
 
 
 
@@ -10,11 +9,13 @@ import se.uu.it.TaskModel.domain.Task;
 public class TaskModel {
 	
 	private XmlDao xmlPersistence;
-	private List<Task> list;
+	//private List<Task> list;
 	
+	
+
 	public TaskModel(){
 		xmlPersistence=new XmlDao();
-		list=xmlPersistence.fetchAllTaskFromXmlFile();
+		//list=xmlPersistence.fetchAllTaskFromXmlFile();
 
 	}
 	
@@ -29,8 +30,11 @@ public class TaskModel {
 	
 
 	
-	public List<Task> getList() {
-		return list;
+//	public List<Task> getList() {
+//		return list;
+//	}
+	public XmlDao getXmlPersistence() {
+		return xmlPersistence;
 	}
 	
 	

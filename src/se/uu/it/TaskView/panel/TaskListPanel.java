@@ -9,14 +9,14 @@ public class TaskListPanel extends JScrollPane  {
 	private TaskListHeader taskHeader;
 	private  TaskListPort taskPort;
 	
-	public TaskListPanel(){
+	public TaskListPanel(String date){
 		super();
 	
-		initComponents();
+		initComponents(date);
 	}
-	public void initComponents(){
+	public void initComponents(String date){
 		taskHeader = new TaskListHeader();
-		taskPort = new TaskListPort();
+		taskPort = new TaskListPort(date);
 		setColumnHeaderView(taskHeader);
 		setViewportView(taskPort);
 	}

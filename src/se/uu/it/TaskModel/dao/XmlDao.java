@@ -113,7 +113,7 @@ public class XmlDao {
 	
 	public List<Task> fetchOneDayTaskFromXmlFile(String date){
 		List<Task> retval=new ArrayList<Task>();
-		List<Element> infoNodes=root.elements("Task");
+		List<Element> infoNodes=root.elements("task");
 		
 		for(Iterator<Element> it=infoNodes.iterator();it.hasNext();){
 			Element elm=(Element)it.next();
@@ -123,7 +123,7 @@ public class XmlDao {
 				info.setDate(elm.elementText("date"));
 				info.setTime(elm.elementText("time"));
 				info.setDuration(elm.elementText("duration"));
-				info.setCategory(elm.elementText("Category"));
+				info.setCategory(elm.elementText("category"));
 				info.setPriority(elm.elementText("priority"));
 				info.setNotes(elm.elementText("notes"));
 				info.setLocation(elm.elementText("location"));
