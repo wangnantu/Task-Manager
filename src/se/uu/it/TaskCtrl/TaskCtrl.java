@@ -22,9 +22,6 @@ import se.uu.it.TaskView.EditTaskView;
 import se.uu.it.TaskView.TaskView;
 import se.uu.it.TaskView.panel.TaskContainer;
 
-
-
-
 public class TaskCtrl{
 
 	private TaskModel model;
