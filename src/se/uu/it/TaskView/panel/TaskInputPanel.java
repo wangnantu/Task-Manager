@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.Calendar;
+import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -89,6 +90,8 @@ public class TaskInputPanel extends JPanel {
 		
 		con.gridy =1; con.gridx = 1;
 		con.insets = new Insets(0,0,10,10);
+		Locale locale = new Locale("en", "US");
+		date.setLocale(locale);
 		date.setCalendar(Calendar.getInstance());
 		date.setPreferredSize(new Dimension(120,30));
 		add(date, con);

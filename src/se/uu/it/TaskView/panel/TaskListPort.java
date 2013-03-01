@@ -20,7 +20,7 @@ public class TaskListPort extends JPanel {
 	private JPanel taskPane = new JPanel();
 	private ArrayList<TaskContainer> taskContainers;
 	private static List<Task> taskList;
-	private TaskContainer newTaskContainer;	
+	private TaskContainer taskContainer;	
 	private TaskModel model;
 	
 	public TaskListPort(String date){
@@ -47,9 +47,10 @@ public class TaskListPort extends JPanel {
 	}
 	public void add(Task task) {
 		
-		newTaskContainer = new TaskContainer(task);
-		taskPane.add(newTaskContainer);
+		taskContainer = new TaskContainer(task);
+		taskPane.add(taskContainer);
 	}
+	
 	
 	public JPanel getTaskPane() {
 		return taskPane;
@@ -62,8 +63,8 @@ public class TaskListPort extends JPanel {
 		return taskList;
 	}
 	
-	public TaskContainer getNewTaskContainer() {
-		return newTaskContainer;
+	public TaskContainer geTaskContainer() {
+		return taskContainer;
 	}
 
 	

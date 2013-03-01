@@ -19,7 +19,8 @@ public class DateTitlePanel extends JPanel {
 		super();
 		initComponents();
 	}
-	private JLabel today;
+	
+	private JButton today;
 	private JLabel date;
 	private JButton addTaskButton;
 	
@@ -27,9 +28,11 @@ public class DateTitlePanel extends JPanel {
 	public void initComponents(){
 		setLayout(new GridLayout(0, 3, 0, 0));
 		
-		today = new JLabel("TODAY");
+		today = new JButton("TODAY");
+		today.setEnabled(false);
 		add(today);
 		date = new JLabel(TimeUtil.getCurrDate());
+		date.setHorizontalAlignment(SwingConstants.CENTER);
 		add(date);
 		addTaskButton = new JButton("Add a new Task");
 		addTaskButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -43,5 +46,9 @@ public class DateTitlePanel extends JPanel {
 	
 	public JLabel getDate() {
 		return date;
+	}
+	
+	public JButton getToday() {
+		return today;
 	}
 }

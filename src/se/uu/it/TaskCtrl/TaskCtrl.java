@@ -1,5 +1,6 @@
 package se.uu.it.TaskCtrl;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.Format;
@@ -7,10 +8,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import se.uu.it.TaskModel.TaskModel;
+import se.uu.it.TaskModel.domain.Task;
 import se.uu.it.TaskUtil.DlgUtil;
 import se.uu.it.TaskUtil.TimeUtil;
 import se.uu.it.TaskView.AddTaskView;
@@ -29,13 +33,8 @@ public class TaskCtrl{
 	public TaskCtrl(){
 		 view = new TaskView();
 		 DlgUtil.setProgramFrame(view);
-		 //showTask(TimeUtil.getCurrDate());
+		 changeButtonsColor();
 		 addComponentListeners();
-		
-	}
-
-	
-	public void showTask(String date){
 		
 	}
 	
@@ -44,11 +43,13 @@ public class TaskCtrl{
 		addHelpMenuListener();
 		addEidtMenuListener();
 		addAddButtonListener();
+		addTodayButtonListener();
 		addTaskContainerListenerToAll();
 		addLastYearListener();
 		addLastMonthListener();
 		addNextMonthListener();
 		addNextYearListener();
+		addDayButtonListenerToall();
 		
 	}
 	
@@ -117,10 +118,16 @@ public class TaskCtrl{
 										model = new TaskModel();
 										model.DeleteTask(taskContainer.getStoredTask());
 										model.SaveTask(editTaskView.getTask());
-										taskContainer.refresh(editTaskView.getTask());										
+										if(editTaskView.getTask().getDate().equals(taskContainer.getDate()))
+										{
+											taskContainer.refresh(editTaskView.getTask());										
+										}else{
+											view.getBasePanel().getTabbedPane().getDayPanel().getTaskListPanel().getTaskPort().getTaskPane().remove(taskContainer);
+										}
 										DlgUtil.popupMessageDialog("Edit Task Success");
 										editTaskView.dispose();
 										view.update(view.getGraphics());
+										changeButtonsColor();
 										}
 								}
 								);
@@ -160,7 +167,7 @@ public class TaskCtrl{
 	private void addTaskContainerListenerToAll(){
 		ArrayList<TaskContainer> taskContainers = view.getBasePanel().getTabbedPane().getDayPanel().getTaskListPanel().getTaskPort().getTaskContainers();
 		
-		for(final TaskContainer taskContainer:taskContainers)
+		for( TaskContainer taskContainer:taskContainers)
 		{
 			addTaskContainerListener(taskContainer);
 		}
@@ -177,13 +184,24 @@ public class TaskCtrl{
 									 
 									public void actionPerformed(ActionEvent e) {
 										addTaskView.actionPerformed(e);
+										if(addTaskView.getTask().getDate().equals(view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getDate().getText()))
+										{
 										view.getBasePanel().getTabbedPane().getDayPanel().getTaskListPanel().getTaskPort().add(addTaskView.getTask());
-										addTaskContainerListener(view.getBasePanel().getTabbedPane().getDayPanel().getTaskListPanel().getTaskPort().getNewTaskContainer());
+										addTaskContainerListener(view.getBasePanel().getTabbedPane().getDayPanel().getTaskListPanel().getTaskPort().geTaskContainer());
+										}
 										view.update(view.getGraphics());
+										changeButtonsColor();
 									}
 									
 								});
-						
+						String dateValue = view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getDate().getText();
+						Date date;
+						try {
+							date = new SimpleDateFormat("yyyy-MM-dd").parse(dateValue);
+							addTaskView.getAddTaskPanel().getDate().setDate(date);
+						} catch (ParseException e1) {
+							e1.printStackTrace();
+						}
 						
 					}
 			
@@ -240,7 +258,69 @@ public class TaskCtrl{
 
 
 	private void changeButtonsColor() {
-		// TODO Auto-generated method stub
-		
+		JButton[] buttons = view.getBasePanel().getTabbedPane().getCalendarPanel().getMonthPanel().getButtons();
+		for (int i = 0; i < buttons.length; i++) {
+			final JButton button = buttons[i];
+			String month = view.getBasePanel().getTabbedPane().getCalendarPanel().getChangeMonthPanel().getCurrMonthLbl().getText();
+			String date;
+			if(button.getText().length() == 1){
+				date = month + "-"+ "0"+button.getText();
+			}else{
+				date = month + "-"+ button.getText();
+			}
+			model = new TaskModel();
+			List<Task> taskList = model.getXmlPersistence().fetchOneDayTaskFromXmlFile(date);
+			if(!taskList.isEmpty()){
+				button.setForeground(Color.red);
+			}else{
+				button.setForeground(Color.black);
+			}
+		}
+	}
+	
+	private void addDayButtonListenerToall(){
+		JButton[] buttons = view.getBasePanel().getTabbedPane().getCalendarPanel().getMonthPanel().getButtons();
+		for (int i = 0; i < buttons.length; i++) {
+			final JButton button = buttons[i];
+			button.addActionListener(
+					new ActionListener(){
+						public void actionPerformed(ActionEvent e) {
+							DlgUtil.popupMessageDialog("try");
+							view.getBasePanel().getTabbedPane().setSelectedIndex(0);
+							String month = view.getBasePanel().getTabbedPane().getCalendarPanel().getChangeMonthPanel().getCurrMonthLbl().getText();
+							String date;
+							if(button.getText().length() == 1){
+								date = month + "-"+ "0"+button.getText();
+							}else{
+								date = month + "-"+ button.getText();
+							}
+							
+							view.getBasePanel().getTabbedPane().getDayPanel().getTaskListPanel().initComponents(date);
+							addTaskContainerListenerToAll();
+							view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getDate().setText(date);
+							if(!date.equals(TimeUtil.getCurrDate())){
+								view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setText("Back to Today");
+								view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setEnabled(true);
+							}else{
+								view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setText("Today");
+								view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setEnabled(false);
+							}
+						}
+						
+					});
+		}
+	}
+	private void addTodayButtonListener(){
+		view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e) {
+						view.getBasePanel().getTabbedPane().getDayPanel().getTaskListPanel().initComponents(TimeUtil.getCurrDate());
+						addTaskContainerListenerToAll();
+						view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getDate().setText(TimeUtil.getCurrDate());
+						view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setText("Today");
+						view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setEnabled(false);
+					}
+					
+				});
 	}
 }

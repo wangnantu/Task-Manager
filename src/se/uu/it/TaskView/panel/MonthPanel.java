@@ -58,7 +58,7 @@ public class MonthPanel extends JPanel {
 			add(buttons[i]);
 		}
 	
-		showDaysInMonth("2013-02");
+		showDaysInMonth(TimeUtil.getCurrMonth());
 	}
 	
 	/**
