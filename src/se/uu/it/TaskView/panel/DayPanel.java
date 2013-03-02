@@ -20,7 +20,7 @@ public class DayPanel extends JPanel {
 
 	public DayPanel() {
 		super();
-		setLayout(new GridBagLayout());
+		//setLayout(new GridBagLayout());
 		initComponents();
 	}
 	public void initComponents(){

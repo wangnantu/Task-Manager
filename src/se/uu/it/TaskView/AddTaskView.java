@@ -26,14 +26,9 @@ public class AddTaskView extends JFrame implements ActionListener {
 	private Task task;
 	private TaskInputPanel addTaskPanel = new TaskInputPanel() ;
 	private TaskModel taskModel;
-
 	
-	public AddTaskView(){
-		this("Add a new Task");
-	}
-	
-	public AddTaskView(String title) {
-		super(title);
+	public AddTaskView() {
+		super("Add a new Task");
 		this.setLayout(new GridBagLayout());
 		this.add(addTaskPanel);
 		this.pack();

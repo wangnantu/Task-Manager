@@ -25,12 +25,8 @@ public class EditTaskView extends JFrame {
 
 	private Task task;
 	
-	public EditTaskView(){
-		this("Edit Task");
-	}
-	
-	public EditTaskView(String title) {
-		super(title);
+	public EditTaskView() {
+		super("Edit Task");
 		this.setLayout(new GridBagLayout());
 		this.add(editTaskPanel);
 		this.pack();
@@ -50,14 +46,6 @@ public class EditTaskView extends JFrame {
 	public TaskInputPanel getEditTaskPanel(){
 		return editTaskPanel;
 	}
-
-//	public void actionPerformed(ActionEvent e) {
-//		if(e.getSource() == this.getEditTaskPanel().getDone()) {
-//			updateTask();
-//			
-//		}
-//		
-//	}
 	
 	public Task getTask() {
 		

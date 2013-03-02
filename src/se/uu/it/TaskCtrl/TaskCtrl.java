@@ -18,6 +18,7 @@ import se.uu.it.TaskModel.domain.Task;
 import se.uu.it.TaskUtil.DlgUtil;
 import se.uu.it.TaskUtil.TimeUtil;
 import se.uu.it.TaskView.AddTaskView;
+import se.uu.it.TaskView.BriefTaskView;
 import se.uu.it.TaskView.EditTaskView;
 import se.uu.it.TaskView.TaskView;
 import se.uu.it.TaskView.panel.TaskContainer;
@@ -272,6 +273,12 @@ public class TaskCtrl{
 			}else{
 				button.setForeground(Color.black);
 			}
+			if(date.equals(TimeUtil.getCurrDate())){
+				button.setBackground(new Color(175,202,202));
+			}else{
+				Color defaultButtonColor = view.getBasePanel().getTabbedPane().getCalendarPanel().getChangeMonthPanel().getNextMonthBtn().getBackground();
+				button.setBackground(defaultButtonColor);
+			}
 		}
 	}
 	
@@ -282,26 +289,39 @@ public class TaskCtrl{
 			button.addActionListener(
 					new ActionListener(){
 						public void actionPerformed(ActionEvent e) {
-							DlgUtil.popupMessageDialog("try");
-							view.getBasePanel().getTabbedPane().setSelectedIndex(0);
 							String month = view.getBasePanel().getTabbedPane().getCalendarPanel().getChangeMonthPanel().getCurrMonthLbl().getText();
-							String date;
+							final String date;
 							if(button.getText().length() == 1){
 								date = month + "-"+ "0"+button.getText();
 							}else{
 								date = month + "-"+ button.getText();
 							}
-							
-							view.getBasePanel().getTabbedPane().getDayPanel().getTaskListPanel().initComponents(date);
-							addTaskContainerListenerToAll();
-							view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getDate().setText(date);
-							if(!date.equals(TimeUtil.getCurrDate())){
-								view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setText("Back to Today");
-								view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setEnabled(true);
-							}else{
-								view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setText("Today");
-								view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setEnabled(false);
-							}
+							final BriefTaskView briefTaskView = new BriefTaskView(date);
+							briefTaskView.getDetail().addActionListener(
+									new ActionListener(){
+										public void actionPerformed(ActionEvent e) {
+											view.getBasePanel().getTabbedPane().setSelectedIndex(0);
+											view.getBasePanel().getTabbedPane().getDayPanel().getTaskListPanel().initComponents(date);
+											addTaskContainerListenerToAll();
+											view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getDate().setText(date);
+											if(!date.equals(TimeUtil.getCurrDate())){
+												view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setText("Back to Today");
+												view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setEnabled(true);
+											}else{
+												view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setText("Today");
+												view.getBasePanel().getTabbedPane().getDayPanel().getDateTitlePanel().getToday().setEnabled(false);
+											}
+											briefTaskView.dispose();
+										}
+										
+									});
+							briefTaskView.getClose().addActionListener(
+									new ActionListener(){
+										public void actionPerformed(ActionEvent e) {
+											briefTaskView.dispose();
+										}
+										
+									});
 						}
 						
 					});
