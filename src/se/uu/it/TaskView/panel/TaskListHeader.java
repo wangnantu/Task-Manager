@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import se.uu.it.TaskUtil.LanguageUtil;
+
 public class TaskListHeader extends JPanel{
 
 	private static final long serialVersionUID = 1L;
@@ -23,19 +25,19 @@ public class TaskListHeader extends JPanel{
 	setBorder(new LineBorder(new Color(100,100,100), 1));
 	setBackground(new Color(175,234,245));
 	
-	overdue = new JLabel("Overdue");
+	overdue = new JLabel(LanguageUtil.getString("TaskListHeader_Overdue_Label"));
 	//overdue.setFont(new Font(this.getFont().getFontName(), this.getFont().getStyle(), 15));
 	
-	title = new JLabel("Title");
+	title = new JLabel(LanguageUtil.getString("TaskListHeader_Title_Label"));
 	//title.setFont(new Font(this.getFont().getFontName(), this.getFont().getStyle(), 15));
 	
-	category = new JLabel("Category");
+	category = new JLabel(LanguageUtil.getString("TaskListHeader_Category_Label"));
 	//category.setFont(new Font(this.getFont().getFontName(), this.getFont().getStyle(), 15));
 	
-	priority = new JLabel("Priority");
+	priority = new JLabel(LanguageUtil.getString("TaskListHeader_Priority_Label"));
 	//priority.setFont(new Font(this.getFont().getFontName(), this.getFont().getStyle(), 15));
 	
-	time = new JLabel("Time");
+	time = new JLabel(LanguageUtil.getString("TaskListHeader_Time_Label"));
 	//time.setFont(new Font(this.getFont().getFontName(), this.getFont().getStyle(), 15));
 	
 	edit = new JLabel("");

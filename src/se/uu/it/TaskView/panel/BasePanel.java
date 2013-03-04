@@ -4,6 +4,9 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
+import se.uu.it.TaskUtil.LanguageUtil;
+
 import java.awt.GridBagConstraints;
 
 public class BasePanel extends JPanel{
@@ -25,8 +28,8 @@ public class BasePanel extends JPanel{
 		public TabbedPane(){ 
 		dayPanel = new DayPanel();
 	    calendarPanel = new CalendarPanel();
-	    addTab("Day", null, dayPanel, null);
-	    addTab("Month", null, calendarPanel, null);
+	    addTab(LanguageUtil.getString("BasePanel_Day_Tab"), null, dayPanel, null);
+	    addTab(LanguageUtil.getString("BasePanel_Month_Tab"), null, calendarPanel, null);
 		}
 		public DayPanel getDayPanel(){
 			return dayPanel;

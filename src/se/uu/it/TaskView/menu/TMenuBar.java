@@ -2,6 +2,8 @@ package se.uu.it.TaskView.menu;
 
 import javax.swing.JMenuBar;
 
+import se.uu.it.TaskUtil.LanguageUtil;
+
 public class TMenuBar extends JMenuBar {
 
 	private static final long serialVersionUID = 1L;
@@ -13,10 +15,10 @@ public class TMenuBar extends JMenuBar {
 	
 	public TMenuBar(){
 		super();
-		fileMenu = new FileMenu("File");
-	    editMenu = new EditMenu("Edit");
-		languageMenu = new LanguageMenu("Language");
-		helpMenu = new HelpMenu("Help");
+		fileMenu = new FileMenu(LanguageUtil.getString("MenuBar_File_Menu"));
+	    editMenu = new EditMenu(LanguageUtil.getString("MenuBar_Edit_Menu"));
+		languageMenu = new LanguageMenu(LanguageUtil.getString("MenuBar_Language_Menu"));
+		helpMenu = new HelpMenu(LanguageUtil.getString("MenuBar_Help_Menu"));
 		add(fileMenu);
 		add(editMenu);
 		add(languageMenu);
