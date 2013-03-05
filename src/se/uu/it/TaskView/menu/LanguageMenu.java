@@ -3,8 +3,6 @@ package se.uu.it.TaskView.menu;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-import se.uu.it.TaskUtil.LanguageUtil;
-
 public class LanguageMenu extends JMenu{
 
 	private static final long serialVersionUID = 1L;
@@ -19,10 +17,10 @@ public class LanguageMenu extends JMenu{
 		addItem();
 	}
 	private void addItem(){
-		Ch = new JMenuItem(LanguageUtil.getString("Language_Chinese_Item"));
-		En = new JMenuItem(LanguageUtil.getString("Language_English_Item"));
-		In = new JMenuItem(LanguageUtil.getString("Language_Indonesian_Item"));
-		Se = new JMenuItem(LanguageUtil.getString("Language_Swedish_Item"));
+		Ch = new JMenuItem("Chinese");
+		En = new JMenuItem("English");
+		In = new JMenuItem("Indonesian");
+		Se = new JMenuItem("Swedish");
 		add(Ch);
 		add(En);
 		add(In);

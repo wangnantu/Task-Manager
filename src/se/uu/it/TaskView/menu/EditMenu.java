@@ -3,8 +3,6 @@ package se.uu.it.TaskView.menu;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-import se.uu.it.TaskUtil.LanguageUtil;
-
 public class EditMenu extends JMenu {
 
 	private static final long serialVersionUID = 1L;
@@ -18,8 +16,8 @@ public class EditMenu extends JMenu {
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-		JMenuItem dayView = new JMenuItem(LanguageUtil.getString("Edit_View_Day_Item"));
-		JMenuItem monthView = new JMenuItem(LanguageUtil.getString("Edit_View_Month_Item"));
+		JMenuItem dayView = new JMenuItem("Day");
+		JMenuItem monthView = new JMenuItem("Month");
 		public ViewMenu(String text){
 			super(text);
 			add(dayView);
@@ -34,7 +32,7 @@ public class EditMenu extends JMenu {
 		
 	}
 	private void addItems(){
-		ViewMenu = new ViewMenu(LanguageUtil.getString("EditMenu_View_SubMenu"));
+		ViewMenu = new ViewMenu("View");
 		add(ViewMenu);
 	}
 	public ViewMenu getViewMenu(){

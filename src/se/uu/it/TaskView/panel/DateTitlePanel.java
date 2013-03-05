@@ -4,13 +4,10 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-import se.uu.it.TaskUtil.LanguageUtil;
 import se.uu.it.TaskUtil.TimeUtil;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.util.Locale;
-
 import javax.swing.SwingConstants;
 
 
@@ -30,14 +27,14 @@ public class DateTitlePanel extends JPanel {
 	
 	public void initComponents(){
 		setLayout(new GridLayout(0, 3, 0, 0));
-		LanguageUtil.SetLocale(Locale.getDefault());
-		today = new JButton(LanguageUtil.getString("DateTitlePanel_Today_Button"));
+		
+		today = new JButton("TODAY");
 		today.setEnabled(false);
 		add(today);
 		date = new JLabel(TimeUtil.getCurrDate());
 		date.setHorizontalAlignment(SwingConstants.CENTER);
 		add(date);
-		addTaskButton = new JButton(LanguageUtil.getString("DateTitlePanel_AddTask_Button"));
+		addTaskButton = new JButton("Add a new Task");
 		addTaskButton.setHorizontalAlignment(SwingConstants.CENTER);
 		add(addTaskButton);
 		setPreferredSize(new Dimension(540, 40));
