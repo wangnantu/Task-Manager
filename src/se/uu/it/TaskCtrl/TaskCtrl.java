@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,6 +17,7 @@ import javax.swing.JLabel;
 import se.uu.it.TaskModel.TaskModel;
 import se.uu.it.TaskModel.domain.Task;
 import se.uu.it.TaskUtil.DlgUtil;
+import se.uu.it.TaskUtil.LanguageUtil;
 import se.uu.it.TaskUtil.TimeUtil;
 import se.uu.it.TaskView.AddTaskView;
 import se.uu.it.TaskView.BriefTaskView;

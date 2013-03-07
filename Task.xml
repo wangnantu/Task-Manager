@@ -102,16 +102,6 @@
     <notes><![CDATA[]]></notes> 
   </task>  
   <task> 
-    <title>ws</title>  
-    <date>2013-03-08</date>  
-    <time>20:23</time>  
-    <duration>xxxx</duration>  
-    <category>Work</category>  
-    <priority>Low</priority>  
-    <location/>  
-    <notes><![CDATA[]]></notes> 
-  </task>  
-  <task> 
     <title>w2w2</title>  
     <date>2013-03-20</date>  
     <time>01:31</time>  
@@ -200,5 +190,25 @@
     <priority>Low</priority>  
     <location/>  
     <notes><![CDATA[]]></notes> 
-  </task> 
+  </task>  
+  <task> 
+    <title>ws</title>  
+    <date>2013-03-08</date>  
+    <time>19:18</time>  
+    <duration>xxxx</duration>  
+    <category>Work</category>  
+    <priority>Low</priority>  
+    <location/>  
+    <notes><![CDATA[]]></notes> 
+  </task>  
+  <task>
+    <title>sjhhjk</title>
+    <date>2013-03-07</date>
+    <time>00:05</time>
+    <duration>12</duration>
+    <category>Work</category>
+    <priority>Low</priority>
+    <location></location>
+    <notes><![CDATA[]]></notes>
+  </task>
 </tasks>
